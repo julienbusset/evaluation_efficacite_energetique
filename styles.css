@@ -49,16 +49,26 @@ body {
     height: 200px;
 }
 
-.roof {
+.roof-left {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 100px solid transparent;
-    border-right: 100px solid transparent;
-    border-bottom: 100px solid #8B4513;
+    left: 0;
+    width: 2px;
+    height: 141.42px;
+    background-color: #8B4513;
+    transform-origin: bottom left;
+    transform: rotate(45deg);
+}
+
+.roof-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 141.42px;
+    background-color: #8B4513;
+    transform-origin: bottom right;
+    transform: rotate(-45deg);
 }
 
 .walls {
@@ -69,24 +79,16 @@ body {
     width: 200px;
     height: 100px;
     background-color: #A0522D;
+    clip-path: polygon(0% 0%, 10% 0%, 10% 100%, 0% 100%, 0% 0%, 90% 0%, 90% 100%, 100% 100%, 100% 0%);
 }
 
-.door {
+.front-wall {
     position: absolute;
-    top: 150px;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
-    width: 30px;
-    height: 50px;
-    background-color: #8B4513;
-}
-
-.window {
-    position: absolute;
-    top: 120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
-    background-color: #ADD8E6;
+    width: 200px;
+    height: 100px;
+    background-color: transparent;
+    z-index: 1;
 }
