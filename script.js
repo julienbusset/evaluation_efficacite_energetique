@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const roofRSlider = document.getElementById('roofR');
     const wallsRSlider = document.getElementById('wallsR');
 
+    const roofThicknessValue = document.getElementById('roofThicknessValue');
+    const wallsThicknessValue = document.getElementById('wallsThicknessValue');
+    const roofRValue = document.getElementById('roofRValue');
+    const wallsRValue = document.getElementById('wallsRValue');
+
     const house = document.querySelector('.house');
     const roof = document.querySelector('.roof');
     const walls = document.querySelector('.walls');
@@ -30,12 +35,35 @@ document.addEventListener('DOMContentLoaded', () => {
         walls.style.filter = `brightness(${brightness})`;
     }
 
-    roofThicknessSlider.addEventListener('input', updateRoofClipPath);
-    wallsThicknessSlider.addEventListener('input', updateWallsClipPath);
-    roofRSlider.addEventListener('input', updateRoofClipPath);
-    wallsRSlider.addEventListener('input', updateWallsClipPath);
+    function updateSliderValues() {
+        roofThicknessValue.textContent = roofThicknessSlider.value + ' mm';
+        wallsThicknessValue.textContent = wallsThicknessSlider.value + ' mm';
+        roofRValue.textContent = parseFloat(roofRSlider.value).toFixed(1);
+        wallsRValue.textContent = parseFloat(wallsRSlider.value).toFixed(1);
+    }
+
+    roofThicknessSlider.addEventListener('input', () => {
+        updateRoofClipPath();
+        updateSliderValues();
+    });
+
+    wallsThicknessSlider.addEventListener('input', () => {
+        updateWallsClipPath();
+        updateSliderValues();
+    });
+
+    roofRSlider.addEventListener('input', () => {
+        updateRoofClipPath();
+        updateSliderValues();
+    });
+
+    wallsRSlider.addEventListener('input', () => {
+        updateWallsClipPath();
+        updateSliderValues();
+    });
 
     // Initial update
     updateRoofClipPath();
     updateWallsClipPath();
+    updateSliderValues();
 });
