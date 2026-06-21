@@ -1,0 +1,2 @@
+Si besoin de parser du CSV, utiliser : https://www.papaparse.com/
+Un CDN est dispo : https://www.jsdelivr.com/package/npm/papaparse

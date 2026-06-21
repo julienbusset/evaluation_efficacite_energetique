@@ -1,47 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animation Page</title>
+    <title>Simulation isolation toiture</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="controls">
-            <div class="slider-container">
-                <label for="roofThickness">Épaisseur du toit:</label>
-                <input type="range" id="roofThickness" min="1" max="50" value="10">
-                <span class="slider-value" id="roofThicknessValue">10 mm</span>
+            <div class="">
+                <label for="lambdaIsolant1">λ isolant 1</label>
+                <input type="range" id="lambdaIsolant1" min="0" max="0.1" step="0.001" value="0.022">
+                <p><output id="lambdaIsolant1Value"></output></p>
             </div>
-            <div class="slider-container">
-                <label for="wallsThickness">Épaisseur des murs:</label>
-                <input type="range" id="wallsThickness" min="1" max="50" value="10">
-                <span class="slider-value" id="wallsThicknessValue">10 mm</span>
+            <div class="">
+                <label for="rhoCpIsolant1">ρCp isolant 1</label>
+                <input type="range" id="rhoCpIsolant1" min="0" max="10000" step="10" value="1000">
+                <p><output id="rhoCpIsolant1Value"></output></p>
             </div>
-            <div class="slider-container">
-                <label for="roofR">Paramètre R du toit:</label>
-                <input type="range" id="roofR" min="0" max="10" step="0.1" value="1">
-                <span class="slider-value" id="roofRValue">1.0</span>
+            <div class="">
+                <label for="lambdaIsolant2">λ isolant 1</label>
+                <input type="range" id="lambdaIsolant2" min="0" max="0.1" step="0.001" value="0.022">
+                <p><output id="lambdaIsolant2Value"></output></p>
             </div>
-            <div class="slider-container">
-                <label for="wallsR">Paramètre R des murs:</label>
-                <input type="range" id="wallsR" min="0" max="10" step="0.1" value="1">
-                <span class="slider-value" id="wallsRValue">1.0</span>
+            <div class="">
+                <label for="rhoCpIsolant2">ρCp isolant 1</label>
+                <input type="range" id="rhoCpIsolant2" min="0" max="10000" step="10" value="1000">
+                <p><output id="rhoCpIsolant2Value"></output></p>
             </div>
         </div>
-        <div class="house-container">
-            <div class="sun-container">
-                <div class="sun"></div>
-                <div class="sun-label">1000 watts</div>
-            </div>
-            <div class="house">
-                <div class="roof"></div>
-                <div class="walls"></div>
-            </div>
+        <div class="diagram-container">
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <div>
+        <canvas id="graphique"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
