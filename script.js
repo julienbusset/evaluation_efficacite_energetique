@@ -75,7 +75,11 @@ const FINDUJOUR = SECDANSJOURS;
 // Masse volumique de l'air sec à 1013 hPa = 1,292 x 273,15 / T (en kg/m3)
 // rhoCp de l'air sec = 1004 x 1,292 x 273,15 / T = 354 321,44 / T (en J/m3/K)
 const coeffRhoCpAirSec = 354321.44;
-// Donc pour 1m * deltaX * deltaX : rhoCp de l'air sec = coeffRhoCpAirSec * deltaX² / T
+// Donc pour 1m : rhoCp de l'air sec = coeffRhoCpAirSec / T
+
+// Récupération des variables saisies par l'utilisateur
+const xIsolant1Valeur = eIsolant1Value.value / 1000; // conversion de mm à m
+const xIsolant2Valeur = eIsolant2Value.value / 1000; // conversion de mm à m
 
 // Discrétisation
 const deltaT = 600; // secondes
@@ -89,11 +93,11 @@ for (let t = 0; t <= dureeTotale; t = t + deltaT) {
   temps.push(t);
 }
 const xIsolant1 = [];
-for (let x = 0; x <= eIsolant1Value.value; x + deltaX) {
+for (let x = 0; x <= xIsolant1Valeur; x + deltaX) {
   xIsolant1.push(x);
 }
 const xIsolant2 = [];
-for (let x = 0; x <= eIsolant2Value.value; x + deltaX) {
+for (let x = 0; x <= xIsolant2Valeur; x + deltaX) {
   xIsolant2.push(x);
 }
 
@@ -176,11 +180,11 @@ let fluxChaleur_isolant2 = [];
 T_Int.push(T_IntInit);
 // Initialisation de la température de l'isolant avec la température intérieure initiale (t = 0)
 let T_isolant1_0 = [];
-for (let x = 0; x <= eIsolant1Value.value; x = x + deltaX) {
+for (let x = 0; x < xIsolant1.length; x++) {
   T_isolant1_0.push(T_IntInit);
 }
 let T_isolant2_0 = [];
-for (let x = 0; x <= eIsolant2Value.value; x = x + deltaX) {
+for (let x = 0; x < xIsolant2.length; x++) {
   T_isolant2.push(T_IntInit);
 }
 T_isolant1.push(T_isolant1_0);
@@ -231,7 +235,7 @@ for (let t = 1; t < temps.length; t++) {
   // Pour 1m d'air sec : rhoCp de l'air sec = coeffRhoCpAirSec / T
   // et la puissance rayonnée par l'isolant 2 vaut rhoCpIsolant2 * deltaTempératureIsolant2 / deltaT
   // la puissance absorbée par l'air sec vaut RhoCpAirSec * deltaTempératureAirSec / deltaT = (coeffRhoCpAirSec / Tair) * deltaTempératureAirSec / deltaT
-  T_Int.push(Math.exp(((rhoCpIsolant2Value.value / coeffRhoCpAirSec) * (T_isolant2[t][eIsolant2.length-1] - T_isolant2[t-1][eIsolant2.length-1])) - Math.log(T_Int[t-1])));
+  T_Int.push(Math.exp(((rhoCpIsolant2Value.value / coeffRhoCpAirSec) * (T_isolant2[t][xIsolant2.length-1] - T_isolant2[t-1][xIsolant2.length-1])) - Math.log(T_Int[t-1])));
 }
 
 
