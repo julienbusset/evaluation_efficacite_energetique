@@ -74,6 +74,18 @@ eIsolant2.addEventListener("input", (event) => {
   simulation();
 });
 
+const TintinitValue = document.querySelector("#TintinitValue");
+const Tintinit = document.querySelector("#Tintinit");
+TintinitValue.textContent = Tintinit.value;
+Tintinit.addEventListener("input", (event) => {
+  TintinitValue.textContent = event.target.value + '°C';
+  if (chartGraphique) {
+    chartGraphique.clear();
+    chartGraphique.destroy();
+  }
+  simulation();
+});
+
 // Fonctions utiles
 function interpoler (Temps, premierTemps, premiereT, deuxiemeTemps, deuxiemeT) {
   let TResultat = 0;
@@ -109,7 +121,8 @@ function simulation () {
   const P_SoleilMax = 803; // W/m² | = 1375 W/m² x 0,7 (absorption atmosphérique) x sin 68° (hauteur du soleil) x 0,9 (coeff absorption tuiles en ardoise)
   const T_ExtMin = 20 + 273.15; // K
   const T_ExtMax = 40 + 273.15; // K
-  const T_IntInit = 20 + 273.15; // K
+  // const T_IntInit = 20 + 273.15; // K
+  const T_IntInit = parseInt(TintinitValue.value) + 273.15; // K
   const H_LeverSoleil = 6 * 3600; // 6:00
   const H_CoucherSoleil = 22 * 3600; // 22:00
   const SECDANSHEURE = 60 * 60;
