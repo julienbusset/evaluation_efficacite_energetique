@@ -92,7 +92,7 @@ function interpoler (Temps, premierTemps, premiereT, deuxiemeTemps, deuxiemeT) {
 
 function equationDeLaChaleur (SsurRhoCP, dT, dX, alphaIsolant, T_isolant_tm1_x, T_isolant_tm1_xp1, T_isolant_tm1_xm1) {
   let T_resultat = T_isolant_tm1_x + SsurRhoCP * dT + dT * alphaIsolant * (T_isolant_tm1_xp1 + T_isolant_tm1_xm1 - 2 * T_isolant_tm1_x) / (dX * dX);
-  console.log(T_resultat  + '  ' + SsurRhoCP + '  ' +  dT + '  ' +  dX + '  ' +  alphaIsolant + '  ' +  T_isolant_tm1_x + '  ' +  T_isolant_tm1_xp1 + '  ' +  T_isolant_tm1_xm1);
+  // console.log(T_resultat  + '  ' + SsurRhoCP + '  ' +  dT + '  ' +  dX + '  ' +  alphaIsolant + '  ' +  T_isolant_tm1_x + '  ' +  T_isolant_tm1_xp1 + '  ' +  T_isolant_tm1_xm1);
   return T_resultat;
 };
 
@@ -126,9 +126,9 @@ function simulation () {
 
 
   // Discrétisation
-  const deltaT = 600; // secondes
+  const deltaT = 60; // secondes
   const deltaX = 0.01; // m
-  const dureeTotaleEnJours = 2; // jours
+  const dureeTotaleEnJours = 3; // jours
   const dureeTotale = dureeTotaleEnJours * SECDANSJOURS; // secondes
 
   // Construction des tableaux de valeurs pour le temps et l'espace
@@ -143,7 +143,7 @@ function simulation () {
   }
 
   const xIsolant2 = [];
-  for (let x = 0; x <= (eIsolant1Value.value / 1000); x = x + deltaX) { // conversion de eIsolant2Value en m
+  for (let x = 0; x <= (eIsolant2Value.value / 1000); x = x + deltaX) { // conversion de eIsolant2Value en m
     xIsolant2.push(x);
   }
 
